@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import ListItem from "./component/ListItem/ListItem";
+const App = () => {
+  const url = 'https://api.github.com/users';
+  const [users, setUsers] = useState([]);
 
-function App() {
+  const getUsers = async() => {
+    const response = await fetch(url);
+    const users = await response.json();
+    setUsers(users)
+    console.log(users)
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ListItem data={users} />
     </div>
   );
 }
