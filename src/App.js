@@ -1,22 +1,29 @@
 import { useEffect, useState } from "react";
 import ListItem from "./component/ListItem/ListItem";
-const App = () => {
-  const url = 'https://api.github.com/users';
-  const [users, setUsers] = useState([]);
-
+const App = () => {  
+  const [transactions, setTransactions] = useState([]);
+  const url = 'https://nextar.flip.id/frontend-test';
   const getUsers = async() => {
     const response = await fetch(url);
-    const users = await response.json();
-    setUsers(users)
-    console.log(users)
+    const data = await response.json();
+    const transactions = [];
+    for (const key in data) {
+      const transaction = {
+        id: key,
+        ...data[key]
+      }
+      transactions.push(transaction);        
+    }   
+    setTransactions(transactions)
+    console.log(transactions);
   }
 
-  useEffect(() => {
+  useEffect(() => {    
     getUsers()
-  }, [])
+  }, []);
   return (
     <div className="App">
-      <ListItem data={users} />
+      <ListItem data={transactions} />
     </div>
   );
 }
