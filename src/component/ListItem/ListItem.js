@@ -1,11 +1,11 @@
 import Item from "../Item/Item";
 
-const ListItem = (props) => {
+const ListItem = (props) => {  
   return (
-    <div >
-      {props.data.map((item) => {
-        const { id, beneficiary_name, status, beneficiary_bank, sender_bank, completed_at, amount } = item;        
-        const format = amount.toString().split('').reverse().join('');        
+    <div >      
+      {props.transactions.map((item) => {
+        const { id, beneficiary_name, status, beneficiary_bank, sender_bank, completed_at, amount } = item;
+        const format = amount.toString().split('').reverse().join('');
         const convert = format.match(/\d{1,3}/g);
         const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('')
         const rawDate = new Date(completed_at)
