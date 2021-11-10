@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import Filter from "../component/Filter/Filter";
 import ListItem from "../component/ListItem/ListItem";
 
-const Home = () => {
+const Home = () => {  
   const [transactions, setTransactions] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("")  
+  const [selectTerm, setSelectTerm] = useState("descending")
   const [searchResults, setSearchResults] = useState([])
   const url = 'https://nextar.flip.id/frontend-test';
-  const getData = async() => {
+  
+  const getData = async () => {
     const response = await fetch(url);
     const data = await response.json();
     const transactions = [];
@@ -25,22 +27,26 @@ const Home = () => {
     setSearchTerm(searchTerm)
     if (searchTerm !== "") {
       const newTransactionList = transactions.filter((item) => {
-        const output = [item.beneficiary_bank, item.sender_bank, item.beneficiary_name ]        
+        const output = [item.beneficiary_bank, item.sender_bank, item.beneficiary_name]
         return Object.values(output).join("").toLowerCase().includes(searchTerm.toLowerCase())
       })
-      setSearchResults(newTransactionList)      
+      setSearchResults(newTransactionList)
     } else {
       setSearchResults(transactions)
     }
   }
 
-  useEffect(() => {
+  const selectHandler = (selectTerm) => {
+    setSelectTerm(selectTerm)
+  }
+  
+  useEffect(() => {    
     getData()
   }, []);
   return (
     <div >      
-      <Filter term={searchTerm} searchKeyword={searchHandler}/>
-      <ListItem transactions={ searchTerm.length < 1 ? transactions : searchResults} />
+      <Filter term={searchTerm} searchKeyword={searchHandler} select={selectTerm} sortFilter={selectHandler} />
+      <ListItem transactions={searchTerm.length < 1 ? transactions : searchResults} />
     </div>
   );
 }
