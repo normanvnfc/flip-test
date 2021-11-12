@@ -1,28 +1,15 @@
 import { useEffect, useState } from "react";
 import Filter from "../component/Filter/Filter";
+import Select from "../component/Filter/Select";
 import ListItem from "../component/ListItem/ListItem";
 
-const Home = () => {  
+const Home = () => {
   const [transactions, setTransactions] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("")  
-  const [selectTerm, setSelectTerm] = useState("descending")
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectTerm, setSelectTerm] = useState("")  
   const [searchResults, setSearchResults] = useState([])
-  const url = 'https://nextar.flip.id/frontend-test';
-  
-  const getData = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    const transactions = [];
-    for (const key in data) {
-      const transaction = {
-        id: key,
-        ...data[key]
-      }
-      transactions.push(transaction);
-    }
-    setTransactions(transactions)
-    console.log(transactions);
-  }
+  console.log(transactions);
+
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm)
     if (searchTerm !== "") {
@@ -36,17 +23,55 @@ const Home = () => {
     }
   }
 
-  const selectHandler = (selectTerm) => {
-    setSelectTerm(selectTerm)
+  const selectHandler = (selected) => {
+    setSelectTerm(selected)
   }
-  
-  useEffect(() => {    
-    getData()
-  }, []);
+
+  useEffect(() => {
+    fetch(
+      'https://nextar.flip.id/frontend-test'
+    ).then((response) => {
+      return response.json();
+    }).then((data) => {
+      const transactions = [];
+      for (const key in data) {
+        const transaction = {
+          id: key,
+          ...data[key]
+        }
+        transactions.push(transaction);
+      }
+      const sortArray = type => {
+        const types = {          
+          ascending: 'ascending',
+          descending: 'descending',
+          oldest: 'oldest',
+          newest: 'newest'
+        };
+        const sortProperty = types[type];
+        const sorted = [...transactions].sort((a, b) => {
+          if (sortProperty === 'ascending') {
+            return a.beneficiary_name.localeCompare(b.beneficiary_name);
+          } else if (sortProperty === 'descending') {
+            return b.beneficiary_name.localeCompare(a.beneficiary_name);
+          } else if (sortProperty === 'oldest') {
+            return a.created_at.localeCompare(b.created_at);
+          } else if (sortProperty === 'newest') {
+            return b.created_at.localeCompare(a.created_at);
+          } else {
+            return b[sortProperty] - a[sortProperty];
+          }
+        });
+        setTransactions(sorted);
+      };
+      sortArray(selectTerm);
+    });
+  }, [selectTerm]);
   return (
-    <div >      
-      <Filter term={searchTerm} searchKeyword={searchHandler} select={selectTerm} sortFilter={selectHandler} />
-      <ListItem transactions={searchTerm.length < 1 ? transactions : searchResults} />
+    <div >
+      <Filter term={searchTerm} searchKeyword={searchHandler} />
+      <Select select={selectTerm} onChangeFilter={selectHandler} />
+      <ListItem transactions={searchTerm.length < 1 ? transactions : searchResults} />      
     </div>
   );
 }
