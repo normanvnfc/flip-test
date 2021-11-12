@@ -6,7 +6,8 @@ const Home = () => {
   const [transactions, setTransactions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("")
   const [selectTerm, setSelectTerm] = useState("")
-  const [searchResults, setSearchResults] = useState([])
+  const [searchResults, setSearchResults] = useState([])  
+  console.log(transactions);
 
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm)

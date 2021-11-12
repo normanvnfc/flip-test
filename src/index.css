@@ -30,7 +30,7 @@ body {
 .App {
   height: 100%;
 }
-.home {
+section {
   width: 45%;
   margin: 0 auto;
 }
@@ -218,11 +218,15 @@ li.pending .card .badge {
   margin: 0px 6px;
 }
 @media only screen and (max-width: 767px) {
-  .home {
+  section {
     width: calc(100% - 20px);
     margin: 0 auto;
   }
   .card .card-body .card-info .card-field .text {
     font-size: 14px;
   }
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
