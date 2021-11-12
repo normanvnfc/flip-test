@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Filter from "../component/Filter/Filter";
-import Select from "../component/Filter/Select";
 import ListItem from "../component/ListItem/ListItem";
 
 const Home = () => {
@@ -69,8 +68,7 @@ const Home = () => {
   }, [selectTerm]);
   return (
     <div >
-      <Filter term={searchTerm} searchKeyword={searchHandler} />
-      <Select select={selectTerm} onChangeFilter={selectHandler} />
+      <Filter term={searchTerm} searchKeyword={searchHandler} select={selectTerm} onChangeFilter={selectHandler} />      
       <ListItem transactions={searchTerm.length < 1 ? transactions : searchResults} />      
     </div>
   );
