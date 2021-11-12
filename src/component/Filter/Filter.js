@@ -11,18 +11,20 @@ const Filter = (props) => {
   }  
   return (
     <div >
-      <div className="form">
+      <div className="filter">
         <div className="input-wrapper">
-          <input type="text" value={props.term} onChange={getSearchTerm} ref={inputEl} />
+          <input className="form-control" type="text" value={props.term} onChange={getSearchTerm} ref={inputEl}  placeholder="Cari nama atau bank"/>
+          <i className="icon-search fas fa-search"></i>
         </div>
         <div className="select-wrapper">
-          <select value={props.select} onChange={getSelectTerm}>
+          <select className="form-control" value={props.select} onChange={getSelectTerm}>
             <option value="">Urutkan</option>
             <option value="ascending">Nama A-Z</option>
             <option value="descending">Nama Z-A</option>
             <option value="oldest">Tanggal Terlama</option>
             <option value="newest">Tanggal Terbaru</option>
           </select>
+          <i className="icon-select fas fa-chevron-down"></i>
         </div>
       </div>
     </div>

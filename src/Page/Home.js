@@ -5,9 +5,8 @@ import ListItem from "../component/ListItem/ListItem";
 const Home = () => {
   const [transactions, setTransactions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectTerm, setSelectTerm] = useState("")  
+  const [selectTerm, setSelectTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
-  console.log(transactions);
 
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm)
@@ -41,7 +40,7 @@ const Home = () => {
         transactions.push(transaction);
       }
       const sortArray = type => {
-        const types = {          
+        const types = {
           ascending: 'ascending',
           descending: 'descending',
           oldest: 'oldest',
@@ -67,10 +66,19 @@ const Home = () => {
     });
   }, [selectTerm]);
   return (
-    <div >
-      <Filter term={searchTerm} searchKeyword={searchHandler} select={selectTerm} onChangeFilter={selectHandler} />      
-      <ListItem transactions={searchTerm.length < 1 ? transactions : searchResults} />      
-    </div>
+    <section className="home">
+      <div className="header">
+        <div className="title-wrapper">
+          <h1 className="title">Daftar Transaksi</h1>
+        </div>
+        <div className="text-wrapper">
+          <h4 className="subtitle">Halo Kak!</h4>
+          <p className="text">Kamu telah melakukan transaksi sebesar <strong>RP 5.000.000</strong> sejak menggunakan Flip.</p>
+        </div>
+      </div>
+      <Filter term={searchTerm} searchKeyword={searchHandler} select={selectTerm} onChangeFilter={selectHandler} />
+      <ListItem transactions={searchTerm.length < 1 ? transactions : searchResults} />
+    </section>
   );
 }
 

@@ -1,9 +1,9 @@
 import Home from "./Page/Home";
 const App = () => {
   return (
-    <div className="App">
+    <main className="App">
       <Home/>
-    </div>
+    </main>
   );
 }
 
