@@ -69,6 +69,7 @@ body {
   border-radius: 5px;
   height: 40px;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 .form-control {
   border: none;
@@ -141,6 +142,9 @@ body {
   font-size: 16px;
   color: var(--orange);
 }
+.icon-arrow {
+  margin: 0 10px;
+}
 select option:checked,
 select option:hover {
   box-shadow: 0 0 10px 100px #000 inset;
@@ -154,8 +158,71 @@ ul {
   margin: 0;
 }
 .card {
-  background-color: var(--white);  
+  background-color: var(--white);
   border-radius: 5px;
   margin: 0 0 10px;
   padding: 10px;
+}
+.card .card-body {
+  display: flex;
+  align-items: center;
+}
+.card .card-body .card-info {
+  flex: 1 1 auto;
+}
+.card .card-body .card-info .card-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.card .card-body .card-info .card-field:last-child {
+  margin-bottom: 0px;
+}
+.card .card-body .card-info .card-field .text {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.card .card-body .card-info .card-field.bank .text {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.badge {
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: var(--white);
+  font-size: 14px;
+}
+li.success .card {
+  border-left: 6px solid var(--green);
+}
+li.pending .card {
+  border-left: 6px solid var(--orange);
+}
+li.success .card .badge {
+  border: 1px solid var(--green);
+  background-color: var(--green);
+}
+li.pending .card .badge {
+  border: 1px solid var(--orange);
+  background-color: transparent;
+  color: var(--black);
+}
+.dot {
+  width: 5px;
+  height: 5px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: var(--black);
+  margin: 0px 6px;
+}
+@media only screen and (max-width: 767px) {
+  .home {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+  }
+  .card .card-body .card-info .card-field .text {
+    font-size: 14px;
+  }
 }

@@ -5,13 +5,24 @@ const Item = (props) => {
   return (
     <Card>
       <div id={id} className="card-body">
-        Name: {name}
-        {/* Status: {status} */}
-        {status === 'SUCCESS' ? 'Berhasil' : 'Pengecekan'}
-        Receiver: {receiver}
-        Complete Date: {complete_date}
-        Sender: {sender}
-        Amount: {amount}
+        <div className="card-info">
+          <div className="card-field bank">
+            <p className="text">{sender}</p>
+            <i className="icon-arrow fas fa-arrow-right"></i>
+            <p className="text">{receiver}</p>
+          </div>
+          <div className="card-field">
+            <p className="text">{name}</p>
+          </div>
+          <div className="card-field ">
+            <p className="text">{amount}</p>
+            <span className="dot"></span>
+            <p className="text">{complete_date}</p>
+          </div>
+        </div>
+        <div className="badge">
+          {status === 'SUCCESS' ? 'Berhasil' : 'Pengecekan'}
+        </div>
       </div>
     </Card>
   );
