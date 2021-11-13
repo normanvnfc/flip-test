@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from "react-router";
 import Card from '../component/UI/Card'
 const Detail = () => {
-  const location = useLocation()
-  console.log(location.state)
+  const location = useLocation()  
   return (
     <section className="detail">
       <div className="header">
