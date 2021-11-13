@@ -166,9 +166,26 @@ ul {
 .card .card-body {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.card .card-body .card-info {
+.card .card-body.detail {
+  align-items: flex-start;
+  padding: 15px;
+  justify-content: flex-start;
   flex: 1 1 auto;
+}
+.card .card-body.detail .card-info {
+  align-items: flex-start;  
+}
+.card .card-body.detail .card-info .card-field {
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 15px;
+}
+.card .card-body.detail .card-info .card-field .title {
+  margin: 0 0 4px;
+  font-weight: bold;
+  font-size: 16px;
 }
 .card .card-body .card-info .card-field {
   display: flex;
@@ -200,11 +217,11 @@ li.success .card {
 li.pending .card {
   border-left: 6px solid var(--orange);
 }
-li.success .card .badge {
+.badge.success {
   border: 1px solid var(--green);
   background-color: var(--green);
 }
-li.pending .card .badge {
+.badge.pending {
   border: 1px solid var(--orange);
   background-color: transparent;
   color: var(--black);
@@ -229,4 +246,31 @@ li.pending .card .badge {
 a {
   text-decoration: none;
   color: inherit;
+}
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--white);
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+.bar .text {
+  margin: 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+.icon-folder {
+  font-size: 40px;
+  margin: 0 15px;
+  color: var(--orange);
+}
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  padding: 8px 10px;
+  border-radius: 5px;
 }

@@ -15,7 +15,8 @@ const Item = (props) => {
         amount: amount,
         unique_code: unique_code,
         remark: remark,
-        created_date: created_date
+        created_date: created_date,
+        status: status
       }}
       >
       <Card>
@@ -35,7 +36,7 @@ const Item = (props) => {
               <p className="text">{complete_date}</p>
             </div>
           </div>
-          <div className="badge">
+          <div className={`badge ${status.toLowerCase()}`}>
             {status === 'SUCCESS' ? 'Berhasil' : 'Pengecekan'}
           </div>
         </div>

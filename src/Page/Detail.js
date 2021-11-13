@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { useLocation } from "react-router";
+import Card from '../component/UI/Card'
 const Detail = () => {
   const location = useLocation()
   console.log(location.state)
@@ -10,20 +12,42 @@ const Detail = () => {
         </div>
       </div>
       <div className="bar">
-        id transksi : {location.state.id}
+        <p className="text">ID TRANSAKSI : {location.state.id}</p>
+        <div className={`badge ${location.state.status.toLowerCase()}`}>{location.state.status === 'SUCCESS' ? 'Berhasil' : 'Pengecekan'}</div>
       </div>
-      <div className="card">
-        <div className="card-body">
-        Pengirim: {location.state.sender}
-          Penerima: {location.state.receiver}
-          No Akun: {location.state.accountNumber}
-          Nama: {location.state.name}
-          Nominal: {location.state.amout}
-          Kode Unik: {location.state.unique_code}
-          Catatan: {location.state.remark}
-          Waktu dibuat: {location.state.created_date}
+      <Card>
+        <div className="card-body detail">
+          <i className="icon-folder far fa-folder-open"></i>
+          <div className="card-info">
+            <div className="card-field">
+              <p className="title">PENGIRIM</p>
+              <p className="text">{location.state.sender}</p>
+            </div>
+            <div className="card-field">
+              <p className="title">PENERIMA</p>
+              <p className="text">{location.state.receiver}</p>
+              <p className="text">{location.state.accountNumber}</p>
+              <p className="text">{location.state.name}</p>
+            </div>
+            <div className="card-field">
+              <p className="title">NOMINAL</p>
+              <p className="text">{location.state.amout}</p>
+              <p className="text">Kode Unik: {location.state.unique_code}</p>              
+            </div>
+            <div className="card-field">
+              <p className="title">CATATAN</p>
+              <p className="text">{location.state.remark}</p>           
+            </div>
+            <div className="card-field">
+              <p className="title">WAKTU DIBUAT</p>              
+              <p className="text">{location.state.created_date}</p>              
+            </div>
+          </div>
         </div>
-      </div>
+      </Card>
+      <Link to="/">
+        <button className="button">Kembali</button>
+      </Link>
     </section>
   );
 }
