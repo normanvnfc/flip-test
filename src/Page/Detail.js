@@ -32,15 +32,15 @@ const Detail = () => {
             <div className="card-field">
               <p className="title">NOMINAL</p>
               <p className="text">{location.state.amout}</p>
-              <p className="text">Kode Unik: {location.state.unique_code}</p>              
+              <p className="text">Kode Unik: {location.state.unique_code}</p>
             </div>
             <div className="card-field">
               <p className="title">CATATAN</p>
-              <p className="text">{location.state.remark}</p>           
+              <p className="text">{location.state.remark}</p>
             </div>
             <div className="card-field">
-              <p className="title">WAKTU DIBUAT</p>              
-              <p className="text">{location.state.created_date}</p>              
+              <p className="title">WAKTU DIBUAT</p>
+              <p className="text">{location.state.created_date}</p>
             </div>
           </div>
         </div>

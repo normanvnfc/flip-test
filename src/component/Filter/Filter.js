@@ -8,7 +8,7 @@ const Filter = (props) => {
   }
   const getSelectTerm = (event) => {
     props.onChangeFilter(event.target.value);
-  }  
+  }
   return (
     <div >
       <div className="filter">
